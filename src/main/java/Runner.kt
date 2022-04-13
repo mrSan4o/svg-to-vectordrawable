@@ -96,11 +96,15 @@ object Runner {
     }
 
 
-    private fun buildRenameFileMap(file: String): Map<String, String> {
+    private fun buildRenameFileMap(path: String): Map<String, String> {
+        val file = File(path)
+        if (!file.exists() || !file.isFile){
+            return emptyMap()
+        }
         val prefix = "![icon]"
 
         val map = mutableMapOf<String, String>()
-        for (line in File(file).readLines()) {
+        for (line in file.readLines()) {
             if (!line.startsWith(prefix)) continue
 
             val relativeFilePath = line.substringAfter(prefix)
