@@ -58,10 +58,6 @@ object Runner {
             println("Project folder doesn't contain svg folder $projectFolder")
             exitProcess(-1)
         }
-        if (projectFiles.none { it.name == "README.md" && it.isFile }) {
-            println("Project folder doesn't contain README.md file")
-            exitProcess(-1)
-        }
 
         val sourceFolderPath = formatFolderPath(projectFolderPath + "svg")
         val renameIdToAliasMappingFilePath = projectFolderPath + "README.md"
